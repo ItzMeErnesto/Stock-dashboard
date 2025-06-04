@@ -107,6 +107,11 @@ col1, col2 = st.columns(2)
 col1.metric("💰 Totale Portfolio Waarde", f"€{totaalwaarde:,.2f}")
 col2.metric("📈 Totale Winst/Verlies", f"€{totaalwinst:,.2f}", delta=f"{(totaalwinst / (totaalwaarde - totaalwinst) * 100):.2f}%" if totaalwaarde > 0 else None)
 
+if totaalwinst > 0:
+    st.balloons()
+else:
+    st.snow()
+
 # == Portfolio tabel ==
 st.subheader("📋 Portfolio Details")
 st.dataframe(portfolio[["Asset Name", "Aantal", "Aankoopprijs", "Huidige Prijs (€)", "Totale Waarde (€)", "Winst/Verlies (€)", "Winst/Verlies (%)"]], use_container_width=True)
